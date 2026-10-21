@@ -122,24 +122,22 @@
                 <span class="appname">Descry</span>
               </div>
               <div class="chain-modal-wrap">
-                <div class="dimmed" style="font-size: 12px; color: var(--color-text-dim)">
-                  <div class="flow-item" style="border: none">
-                    <b>Give todos a due date</b>
-                    <div class="flow-desc">addTodo passes the due date down to the store</div>
-                  </div>
-                </div>
                 <div class="chain-modal">
                   <div class="head">
                     <div>
-                      <h5>.addTodo()</h5>
-                      <p>Continues from main(), which wasn't touched by this diff.</p>
+                      <h5>main()</h5>
+                      <p>The overdue command reads straight through to the store's own check.</p>
                     </div>
                     <span class="close">&times;</span>
                   </div>
-                  <div class="chain-diagram-row">
-                    <span class="chain-node">.addTodo()</span>
-                    <span class="chain-arrow">&rarr;</span>
-                    <span class="chain-node">.add()</span>
+                  <div class="chain-diagram-row vertical">
+                    <span class="chain-node">main()</span>
+                    <span class="chain-arrow">&darr;</span>
+                    <span class="chain-node">.listOverdueTodos()</span>
+                    <span class="chain-arrow">&darr;</span>
+                    <span class="chain-node">.overdue()</span>
+                    <span class="chain-arrow">&darr;</span>
+                    <span class="chain-node">isOverdue()</span>
                   </div>
                 </div>
               </div>
