@@ -71,18 +71,33 @@
               </ul>
             </div>
             <div class="mockup" style="margin: 0">
-              <div class="titlebar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-              <div class="body">
-                <strong style="font-size: 13px">Flow 1 — Add retry to the sync job</strong>
-                <p style="color: var(--color-text-muted); font-size: 13px; margin-top: 10px">
-                  The sync job now retries a transient fetch failure
-                  instead of giving up immediately, so one flaky request
-                  doesn't fail the whole run.
-                </p>
-                <div style="margin-top: 14px; font-size: 12.5px; color: var(--color-text-dim)">
-                  3 steps · 7 hunks
+              <div class="titlebar">
+                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                <span class="appname">Descry</span>
+              </div>
+              <div class="step-head" style="padding-top: 16px">
+                <div class="title-row">
+                  <div>
+                    <h4 style="font-size: 15.5px">Give todos a due date</h4>
+                    <p>Adds a due date to a todo at creation time, the foundation the overdue flow builds on.</p>
+                  </div>
                 </div>
               </div>
+              <div style="padding: 0 20px 18px">
+                <div class="step-head" style="padding: 12px; border: 1px solid var(--color-border); border-radius: 8px; background: var(--color-surface)">
+                  <div class="title-row">
+                    <div>
+                      <h4 style="font-size: 14px">1. addTodo passes the due date down to the store</h4>
+                      <p style="font-size: 12.5px">Adding a todo now threads an optional due date from the service straight into the store.</p>
+                    </div>
+                  </div>
+                  <div class="actions" style="margin-top: 12px">
+                    <span class="pill-btn">See changes &rarr;</span>
+                    <span class="pill-btn">&#x1F517; Chain diagram</span>
+                  </div>
+                </div>
+              </div>
+              <div class="reply-row">Ask descry about this step</div>
             </div>
           </div>
 
@@ -102,16 +117,30 @@
               </ul>
             </div>
             <div class="mockup" style="margin: 0">
-              <div class="titlebar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-              <div class="body" style="font-size: 12.5px; font-family: ui-monospace, monospace">
-                <div style="display:flex;align-items:center;gap:8px;color:var(--color-text-muted)">
-                  <span class="pill">runSync()</span> → <span class="pill">classifyError()</span>
+              <div class="titlebar">
+                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                <span class="appname">Descry</span>
+              </div>
+              <div class="chain-modal-wrap">
+                <div class="dimmed" style="font-size: 12px; color: var(--color-text-dim)">
+                  <div class="flow-item" style="border: none">
+                    <b>Give todos a due date</b>
+                    <div class="flow-desc">addTodo passes the due date down to the store</div>
+                  </div>
                 </div>
-                <div style="display:flex;align-items:center;gap:8px;color:var(--color-text-muted);margin-top:10px;margin-left:24px">
-                  ↳ <span class="pill">retryWithBackoff()</span>
-                </div>
-                <div style="display:flex;align-items:center;gap:8px;color:var(--color-text-muted);margin-top:10px;margin-left:48px">
-                  ↳ <span class="pill">RetryConfig</span>
+                <div class="chain-modal">
+                  <div class="head">
+                    <div>
+                      <h5>.addTodo()</h5>
+                      <p>Continues from main(), which wasn't touched by this diff.</p>
+                    </div>
+                    <span class="close">&times;</span>
+                  </div>
+                  <div class="chain-diagram-row">
+                    <span class="chain-node">.addTodo()</span>
+                    <span class="chain-arrow">&rarr;</span>
+                    <span class="chain-node">.add()</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -131,16 +160,28 @@
                 <li>Live-reviewed by your own coding agent when the walkthrough came from one</li>
               </ul>
             </div>
-            <div class="chat-mock">
-              <div class="turn-user"><span>Does this handle the case where the file uses commas as a thousands separator?</span></div>
-              <div class="turn-assistant">
-                <span class="who">descry</span>
-                <p>
-                  Yes — it only treats comma as the decimal point when the
-                  file's own delimiter is a semicolon. Everything else keeps
-                  comma as a thousands separator.
-                </p>
+            <div class="mockup" style="margin: 0">
+              <div class="titlebar">
+                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                <span class="appname">Descry</span>
               </div>
+              <div class="thread-box" style="margin: 16px">
+                <div class="thread-head">
+                  <span class="loc">&#128172; cli.ts:16</span>
+                  <span>&times;</span>
+                </div>
+                <div class="thread-body">
+                  <div class="chat-mock" style="border: none; padding: 0; background: none">
+                    <div class="turn-user"><span>What happens if someone passes a garbage date to --due=, like --due=banana? Doesn't that break overdue detection silently?</span></div>
+                    <div class="turn-assistant">
+                      <span class="who">descry</span>
+                      <p>Yeah, you're right. <code>new Date("banana")</code> gives <code>Invalid Date</code>, and <code>isOverdue()</code> does <code>dueDate &lt; now</code> &mdash; always false, so it silently never counts as overdue instead of erroring.</p>
+                      <p>We should handle this, just not as part of this change. Want me to track it as a comment?</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="reply-row" style="margin: 0 16px 16px">Reply&hellip;</div>
             </div>
           </div>
 
@@ -156,15 +197,23 @@
             </div>
             <div class="mockup" style="margin: 0">
               <div class="titlebar">
-                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-                <div style="margin-left: auto; display: flex; gap: 6px; font-size: 11px">
-                  <span class="pill">Diff</span><span style="color: var(--color-text-dim)">Split</span>
-                  <span style="color: var(--color-text-dim)">Base</span><span style="color: var(--color-text-dim)">PR</span>
-                </div>
+                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                <span class="appname">Descry</span>
               </div>
-              <div class="body" style="font-size: 12.5px; font-family: ui-monospace, monospace; color: var(--color-text-muted)">
-                + retrying up to 3 times on a transient error<br />
-                + classifying the error before deciding to retry
+              <div class="tab-bar">
+                <div class="tabs">
+                  <span class="tab">Overview</span><span class="tab active">Diff</span>
+                  <span class="tab">Split</span><span class="tab">Base</span><span class="tab">PR</span>
+                </div>
+                <div class="meta"><span class="sha">a0675dbc1bb3</span></div>
+              </div>
+              <div class="called-by" style="border-bottom: none; padding-top: 14px">src/store/todo-store.ts</div>
+              <div class="diffcode" style="padding-bottom: 16px">
+                <div class="diffline add"><span class="gut">18</span><span class="code">  overdue(now: Date): Todo[] {</span></div>
+                <div class="diffline add"><span class="gut">19</span><span class="code">    return this.todos</span></div>
+                <div class="diffline add"><span class="gut">20</span><span class="code">      .filter((t) =&gt; isOverdue(t, now))</span></div>
+                <div class="diffline add"><span class="gut">21</span><span class="code">      .sort((a, b) =&gt; a.dueDate!.getTime() - b.dueDate!.getTime());</span></div>
+                <div class="diffline add"><span class="gut">22</span><span class="code">  }</span></div>
               </div>
             </div>
           </div>
@@ -172,20 +221,41 @@
           <div class="feature-row">
             <div class="feature-copy">
               <div class="tag">Comments</div>
-              <h3>Comments that stay anchored to the code</h3>
+              <h3>A comment is always headed somewhere specific</h3>
               <p>
-                Leave a comment on exactly the lines it's about. Track it as
-                unresolved, and resolve it once the change is made — by you,
-                or by the agent that's already in your working tree.
+                What a comment is for depends on what you're reviewing. On
+                someone else's PR, it's the real feedback you'll submit back
+                to GitHub. On a walkthrough of changes you just had an agent
+                make in your own working tree, it's an item the agent itself
+                comes back and resolves — never a note left for some
+                unspecified "whoever."
               </p>
+              <ul>
+                <li>Select the lines, pick Comment, write the suggestion</li>
+                <li>Stays open and unresolved until it's actually acted on</li>
+              </ul>
             </div>
-            <div class="chat-mock">
-              <div class="turn-assistant">
-                <span class="who">review comment</span>
-                <p>
-                  Also bound the backoff delay here — right now a long
-                  outage would make this retry forever instead of giving up.
-                </p>
+            <div class="mockup" style="margin: 0">
+              <div class="titlebar">
+                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                <span class="appname">Descry</span>
+              </div>
+              <div class="called-by" style="border-bottom: none; padding-top: 14px">src/cli.ts</div>
+              <div class="diffcode">
+                <div class="diffline add"><span class="gut">16</span><span class="code">  const dueArg = words.find((w) =&gt; w.startsWith("--due="));</span></div>
+              </div>
+              <div class="select-toolbar">
+                <button>&#10022; Ask descry</button>
+                <span class="divider"></span>
+                <button>&#128172; Comment</button>
+                <span class="close">&times;</span>
+              </div>
+              <div class="draft-comment" style="margin: 14px 20px 20px; border-top: 2px solid #d29922; border-radius: 8px">
+                <div class="head">
+                  <span class="label">Draft comment</span>
+                  <span class="icons">&#9998; &#128465;</span>
+                </div>
+                <p>Validate the date parsed out of --due= and reject or warn on an invalid one, instead of silently creating a todo that can never be flagged as overdue.</p>
               </div>
             </div>
           </div>
@@ -206,8 +276,11 @@
               </ul>
             </div>
             <div class="mockup" style="margin: 0">
-              <div class="titlebar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-              <div class="body" style="font-size: 12.5px; color: var(--color-text-muted)">
+              <div class="titlebar">
+                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                <span class="appname">Descry</span>
+              </div>
+              <div class="body" style="font-size: 12.5px; color: var(--color-text-muted); font-family: ui-monospace, monospace">
                 <span class="pill">submit_walkthrough</span> succeeded — review is
                 ready in Descry.<br /><br />
                 Listening for questions on this review…
