@@ -316,5 +316,16 @@
         <small>&copy; 2026 Descry</small>
       </div>
     </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-clike.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
+    <script>
+      document.querySelectorAll(".diffline .code").forEach((el) => {
+        el.classList.add("language-typescript");
+        Prism.highlightElement(el);
+      });
+    </script>
   </body>
 </html>

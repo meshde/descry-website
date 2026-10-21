@@ -65,6 +65,83 @@
               <span class="reindex">&#8635; Re-index</span>
             </div>
             <div style="display: flex">
+              <div class="side-panel" style="width: 240px; flex-shrink: 0">
+                <div class="side-label">Flows &middot; 4</div>
+                <div class="flow-item active">
+                  <b>1. Give todos a due date</b>
+                  <div class="flow-desc">Adds a due date to a todo at creation time, the foundation the overdue flow builds on.</div>
+                  <div class="flow-meta">3 steps &middot; 5 hunks</div>
+                </div>
+                <div class="flow-item">
+                  <b>2. Surface overdue todos to the user</b>
+                  <div class="flow-desc">A todo with a due date is only useful if something tells you it's late.</div>
+                  <div class="flow-meta">2 steps &middot; 7 hunks</div>
+                </div>
+                <div class="flow-item">
+                  <b>3. Other / shared changes</b>
+                  <div class="flow-desc">Changes not assigned to a specific flow</div>
+                  <div class="flow-meta">1 step &middot; 6 hunks</div>
+                </div>
+                <div class="flow-item">
+                  <b>4. Tests</b>
+                  <div class="flow-desc">Test-file changes.</div>
+                  <div class="flow-meta">1 step &middot; 1 hunk</div>
+                </div>
+              </div>
+              <div style="flex: 1; min-width: 0">
+                <div class="tab-bar">
+                  <div class="tabs">
+                    <span class="tab active">Overview</span><span class="tab">Diff</span>
+                    <span class="tab">Split</span><span class="tab">Base</span><span class="tab">PR</span>
+                  </div>
+                </div>
+                <div class="step-head" style="padding-bottom: 6px">
+                  <h4 style="font-size: 17px">Give todos a due date</h4>
+                  <p>Adds a due date to a todo at creation time, the foundation the overdue flow builds on.</p>
+                </div>
+                <div style="padding: 4px 20px 20px; display: flex; flex-direction: column; gap: 10px">
+                  <div class="step-head" style="padding: 12px; border: 1px solid var(--color-border); border-radius: 8px; background: var(--color-surface)">
+                    <div class="title-row">
+                      <div>
+                        <h4 style="font-size: 14px">1. addTodo passes the due date down to the store</h4>
+                        <p style="font-size: 12.5px">Adding a todo now threads an optional due date from the service straight into the store.</p>
+                      </div>
+                    </div>
+                    <div class="actions" style="margin-top: 10px">
+                      <span class="pill-btn">See changes &rarr;</span>
+                      <span class="pill-btn">&#x1F517; Chain diagram</span>
+                    </div>
+                  </div>
+                  <div class="step-head" style="padding: 12px; border: 1px solid var(--color-border); border-radius: 8px; background: var(--color-surface)">
+                    <div class="title-row">
+                      <div>
+                        <h4 style="font-size: 14px">2. extractDueDate()</h4>
+                        <p style="font-size: 12.5px">The add command accepts a trailing --due=YYYY-MM-DD flag and strips it out of the todo's own text.</p>
+                      </div>
+                    </div>
+                    <div class="actions" style="margin-top: 10px">
+                      <span class="pill-btn">See changes &rarr;</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="text-align: center; margin: 18px 0; color: var(--color-text-dim); font-size: 12.5px">
+            Click into a chain step &darr;
+          </div>
+
+          <div class="mockup" style="text-align: left">
+            <div class="titlebar">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="appname">Descry</span>
+            </div>
+            <div class="crumb-bar">
+              <span class="crumbs">&larr; Reviews &nbsp;|&nbsp; <b>Add due dates and an overdue command to the to-do CLI</b></span>
+              <span class="reindex">&#8635; Re-index</span>
+            </div>
+            <div style="display: flex">
               <div class="side-panel" style="width: 220px; flex-shrink: 0">
                 <div class="node-item active">
                   <span>.addTodo()</span>
@@ -248,5 +325,16 @@
         <small>&copy; 2026 Descry</small>
       </div>
     </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-clike.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
+    <script>
+      document.querySelectorAll(".diffline .code").forEach((el) => {
+        el.classList.add("language-typescript");
+        Prism.highlightElement(el);
+      });
+    </script>
   </body>
 </html>
