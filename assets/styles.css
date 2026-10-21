@@ -97,6 +97,10 @@ header.site .bar {
   color: var(--color-text);
 }
 
+.brand:hover {
+  text-decoration: none;
+}
+
 .brand img {
   width: 22px;
   height: 22px;
