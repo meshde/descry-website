@@ -67,14 +67,14 @@
             <div class="mockup" style="margin: 0">
               <div class="titlebar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
               <div class="body">
-                <strong style="font-size: 13px">Flow 1 — Each tax follows its collecting agency's date</strong>
+                <strong style="font-size: 13px">Flow 1 — Add retry to the sync job</strong>
                 <p style="color: var(--color-text-muted); font-size: 13px; margin-top: 10px">
-                  The tax agency gains a date purpose, PAYROLL by default or
-                  REFERENCE, so the run date it's compared against matches
-                  who actually collects it.
+                  The sync job now retries a transient fetch failure
+                  instead of giving up immediately, so one flaky request
+                  doesn't fail the whole run.
                 </p>
                 <div style="margin-top: 14px; font-size: 12.5px; color: var(--color-text-dim)">
-                  3 steps · 35 hunks
+                  3 steps · 7 hunks
                 </div>
               </div>
             </div>
@@ -177,8 +177,8 @@
               <div class="turn-assistant">
                 <span class="who">review comment</span>
                 <p>
-                  Also flip <code>clampsGarnishmentDeductions()</code> here — the
-                  manual-deduction endpoint still bypasses the cap otherwise.
+                  Also bound the backoff delay here — right now a long
+                  outage would make this retry forever instead of giving up.
                 </p>
               </div>
             </div>

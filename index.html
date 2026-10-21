@@ -56,24 +56,23 @@
             <div class="body">
               <div class="grid" style="grid-template-columns: 1fr 1.3fr; gap: 16px">
                 <div class="chat-mock" style="text-align: left">
-                  <div class="turn-user"><span>Why not just reuse the existing validator here?</span></div>
+                  <div class="turn-user"><span>Why retry instead of just failing fast here?</span></div>
                   <div class="turn-assistant">
                     <span class="who">descry</span>
                     <p>
-                      It only checks required fields, not cross-field rules — the
-                      PT tax tables need a value that depends on two other
-                      fields at once, which <span class="pill">validateRow()</span>
-                      can't express.
+                      Most failures on this endpoint are transient network
+                      blips, not real errors — retrying with backoff covers
+                      that without masking a permanent failure.
                     </p>
-                    <p>See <span class="pill">step 3</span> for where that rule lives.</p>
+                    <p>See <span class="pill">step 2</span> for how transient vs. permanent is decided.</p>
                   </div>
                 </div>
                 <div class="chat-mock" style="text-align: left">
-                  <strong style="font-size: 13px">Flow 2 — Period-to-date history</strong>
+                  <strong style="font-size: 13px">Flow 1 — Add retry to the sync job</strong>
                   <p style="margin-top: 10px">
-                    1. <span class="pill">PayrollRunTax.model.ts</span> adds a period-basis column<br />
-                    2. <span class="pill">ptd-snapshot.service.ts</span> reads it when rebuilding history<br />
-                    3. <span class="pill">payroll-aggregation-query.service.ts</span> groups by remuneration month
+                    1. <span class="pill">sync-job.ts</span> wraps the fetch in a bounded retry loop<br />
+                    2. <span class="pill">error-classifier.ts</span> decides transient vs. permanent<br />
+                    3. <span class="pill">retry-config.ts</span> adds the new backoff settings
                   </p>
                 </div>
               </div>
