@@ -64,62 +64,87 @@
               <span class="crumbs">&larr; Reviews &nbsp;|&nbsp; <b>Add due dates and an overdue command to the to-do CLI</b></span>
               <span class="reindex">&#8635; Re-index</span>
             </div>
-            <div class="tab-bar">
-              <div class="tabs">
-                <span class="tab">Overview</span><span class="tab active">Diff</span>
-                <span class="tab">Split</span><span class="tab">Base</span><span class="tab">PR</span>
-              </div>
-              <div class="meta">
-                <span>.addTodo()</span>
-                <span class="sha">a0675dbc1bb3</span>
-              </div>
-            </div>
-            <div class="step-head">
-              <div class="title-row">
-                <div>
-                  <h4>addTodo passes the due date down to the store</h4>
-                  <p>Adding a todo now threads an optional due date from the service straight into the store, with no due date defaulting to none.</p>
+            <div style="display: flex">
+              <div class="side-panel" style="width: 220px; flex-shrink: 0">
+                <div class="node-item active">
+                  <span>.addTodo()</span>
+                  <span style="display: flex; align-items: center; gap: 6px">
+                    <span class="badge-num">1</span><span style="color: var(--color-text-dim)">&#9675;</span>
+                  </span>
                 </div>
-                <div class="actions">
-                  <span class="pill-btn">&#x1F517; Chain diagram</span>
+                <div class="node-item indent">
+                  <span>.add()</span>
+                  <span style="display: flex; align-items: center; gap: 6px">
+                    <span class="badge-num">1</span><span style="color: var(--color-text-dim)">&#9675;</span>
+                  </span>
+                </div>
+                <div class="node-item ref">&#8646; 1 reference</div>
+                <div class="node-item indent">
+                  <span>Todo</span>
+                  <span style="display: flex; align-items: center; gap: 6px">
+                    <span class="badge-num">1</span><span style="color: var(--color-text-dim)">&#9675;</span>
+                  </span>
                 </div>
               </div>
-            </div>
-            <div class="called-by">Called by: <b>main()</b></div>
-            <div class="file-row">
-              <span>src/services/todo-service.ts</span>
-              <span class="hunks">1 hunk</span>
-            </div>
-            <div class="hunk-row">
-              <div class="left">
-                <span class="sparkle">&#10022;</span>
-                <span class="symbol">.addTodo()</span>
-                <span class="desc">&nbsp;The service's addTodo now takes an optional due date and passes it straight through to the store.</span>
-              </div>
-              <div class="right">
-                <span class="comment-count">&#128172; 1</span>
-                <span class="stat-add">+2</span><span class="stat-del">-2</span>
-              </div>
-            </div>
-            <div class="diffcode" style="padding-top: 10px">
-              <div class="diffline del"><span class="gut">7</span><span class="code">  addTodo(text: string): Todo {</span></div>
-              <div class="diffline del"><span class="gut">8</span><span class="code">    return this.store.add(text);</span></div>
-              <div class="diffline add anchor"><span class="gut">7</span><span class="code">  addTodo(text: string, dueDate: Date | null = null): Todo {</span></div>
-              <div class="diffline add"><span class="gut">8</span><span class="code">    return this.store.add(text, dueDate);</span></div>
-            </div>
-            <div style="height: 10px"></div>
-            <div class="thread-box">
-              <div class="thread-head">
-                <span class="loc">&#128172; todo-service.ts:8</span>
-                <span>&times;</span>
-              </div>
-              <div class="thread-body">
-                <div class="chat-mock" style="border: none; padding: 0; background: none">
-                  <div class="turn-user"><span>Shouldn't we validate that the date is in the future?</span></div>
-                  <div class="turn-assistant">
-                    <span class="who">descry</span>
-                    <p>No &mdash; a past due date is a legitimate thing to add. Say you're logging "renew passport" a day late: it should show up as overdue immediately, not get rejected on entry.</p>
-                    <p>The overdue check in <span class="pill">flow 2</span> just compares the due date against now, so this already works.</p>
+              <div style="flex: 1; min-width: 0">
+                <div class="tab-bar">
+                  <div class="tabs">
+                    <span class="tab">Overview</span><span class="tab active">Diff</span>
+                    <span class="tab">Split</span><span class="tab">Base</span><span class="tab">PR</span>
+                  </div>
+                  <div class="meta">
+                    <span>Todo</span>
+                    <span class="sha">a0675dbc1bb3</span>
+                  </div>
+                </div>
+                <div class="step-head">
+                  <div class="title-row">
+                    <div>
+                      <h4>addTodo passes the due date down to the store</h4>
+                      <p>Adding a todo now threads an optional due date from the service straight into the store, with no due date defaulting to none.</p>
+                    </div>
+                    <div class="actions">
+                      <span class="pill-btn">&#x1F517; Chain diagram</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="called-by">Called by: <b>main()</b></div>
+                <div class="file-row">
+                  <span>src/services/todo-service.ts</span>
+                  <span class="hunks">1 hunk</span>
+                </div>
+                <div class="hunk-row">
+                  <div class="left">
+                    <span class="sparkle">&#10022;</span>
+                    <span class="symbol">.addTodo()</span>
+                    <span class="desc">&nbsp;The service's addTodo now takes an optional due date and passes it straight through to the store.</span>
+                  </div>
+                  <div class="right">
+                    <span class="comment-count">&#128172; 1</span>
+                    <span class="stat-add">+2</span><span class="stat-del">-2</span>
+                  </div>
+                </div>
+                <div class="diffcode" style="padding-top: 10px">
+                  <div class="diffline del"><span class="gut">7</span><span class="mark">&minus;</span><span class="code">  addTodo(text: string): Todo {</span></div>
+                  <div class="diffline del"><span class="gut">8</span><span class="mark">&minus;</span><span class="code">    return this.store.add(text);</span></div>
+                  <div class="diffline add anchor"><span class="gut">7</span><span class="mark">+</span><span class="code">  addTodo(text: string, dueDate: Date | null = null): Todo {</span></div>
+                  <div class="diffline add"><span class="gut">8</span><span class="mark">+</span><span class="code">    return this.store.add(text, dueDate);</span></div>
+                </div>
+                <div style="height: 10px"></div>
+                <div class="thread-box">
+                  <div class="thread-head">
+                    <span class="loc">&#128172; todo-service.ts:8</span>
+                    <span>&times;</span>
+                  </div>
+                  <div class="thread-body">
+                    <div class="chat-mock" style="border: none; padding: 0; background: none">
+                      <div class="turn-user"><span>Shouldn't we validate that the date is in the future?</span></div>
+                      <div class="turn-assistant">
+                        <span class="who">descry</span>
+                        <p>No &mdash; a past due date is a legitimate thing to add. Say you're logging "renew passport" a day late: it should show up as overdue immediately, not get rejected on entry.</p>
+                        <p>The overdue check in <span class="pill">flow 2</span> just compares the due date against now, so this already works.</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

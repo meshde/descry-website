@@ -209,11 +209,11 @@
               </div>
               <div class="called-by" style="border-bottom: none; padding-top: 14px">src/store/todo-store.ts</div>
               <div class="diffcode" style="padding-bottom: 16px">
-                <div class="diffline add"><span class="gut">18</span><span class="code">  overdue(now: Date): Todo[] {</span></div>
-                <div class="diffline add"><span class="gut">19</span><span class="code">    return this.todos</span></div>
-                <div class="diffline add"><span class="gut">20</span><span class="code">      .filter((t) =&gt; isOverdue(t, now))</span></div>
-                <div class="diffline add"><span class="gut">21</span><span class="code">      .sort((a, b) =&gt; a.dueDate!.getTime() - b.dueDate!.getTime());</span></div>
-                <div class="diffline add"><span class="gut">22</span><span class="code">  }</span></div>
+                <div class="diffline add"><span class="gut">18</span><span class="mark">+</span><span class="code">  overdue(now: Date): Todo[] {</span></div>
+                <div class="diffline add"><span class="gut">19</span><span class="mark">+</span><span class="code">    return this.todos</span></div>
+                <div class="diffline add"><span class="gut">20</span><span class="mark">+</span><span class="code">      .filter((t) =&gt; isOverdue(t, now))</span></div>
+                <div class="diffline add"><span class="gut">21</span><span class="mark">+</span><span class="code">      .sort((a, b) =&gt; a.dueDate!.getTime() - b.dueDate!.getTime());</span></div>
+                <div class="diffline add"><span class="gut">22</span><span class="mark">+</span><span class="code">  }</span></div>
               </div>
             </div>
           </div>
@@ -242,7 +242,7 @@
               </div>
               <div class="called-by" style="border-bottom: none; padding-top: 14px">src/cli.ts</div>
               <div class="diffcode">
-                <div class="diffline add"><span class="gut">16</span><span class="code">  const dueArg = words.find((w) =&gt; w.startsWith("--due="));</span></div>
+                <div class="diffline add"><span class="gut">16</span><span class="mark">+</span><span class="code">  const dueArg = words.find((w) =&gt; w.startsWith("--due="));</span></div>
               </div>
               <div class="select-toolbar">
                 <button>&#10022; Ask descry</button>
