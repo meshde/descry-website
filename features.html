@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Features — Descry</title>
+    <meta
+      name="description"
+      content="Flow-based walkthroughs, chain diagrams, Ask Descry chat, Diff/Split/Base/PR views, and anchored review comments."
+    />
+    <link rel="icon" href="assets/icon.png" />
+    <link rel="stylesheet" href="assets/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap bar">
+        <a class="brand" href="index.html">
+          <img src="assets/icon.png" alt="" />
+          Descry
+        </a>
+        <nav class="primary">
+          <a href="features.html" class="active">Features</a>
+          <a href="getting-started.html">Getting started</a>
+          <a href="https://github.com/meshde/descry-releases/releases/latest">Download</a>
+        </nav>
+        <a class="btn btn-accent" href="getting-started.html">Get started</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero no-border" style="padding-bottom: 32px">
+        <div class="wrap">
+          <span class="eyebrow">Features</span>
+          <h1 style="font-size: 38px">Everything you need to actually review the change</h1>
+          <p class="lead">
+            Not another diff viewer with syntax highlighting. Descry
+            decomposes a PR into the logical work it does, and stays with you
+            while you work through it.
+          </p>
+        </div>
+      </section>
+
+      <section class="no-border">
+        <div class="wrap">
+          <div class="feature-row">
+            <div class="feature-copy">
+              <div class="tag">Walkthroughs</div>
+              <h3>Flows instead of files</h3>
+              <p>
+                Descry groups every changed hunk into a named flow — a
+                piece of the change with its own job — and orders its steps
+                the way the code actually runs, not the order files happen to
+                sort in.
+              </p>
+              <ul>
+                <li>Each flow explains how it serves the PR's overall goal</li>
+                <li>Pure plumbing (imports, DI wiring) is marked and gets out of your way</li>
+                <li>Anything not worth a separate callout still shows up, just grouped</li>
+              </ul>
+            </div>
+            <div class="mockup" style="margin: 0">
+              <div class="titlebar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+              <div class="body">
+                <strong style="font-size: 13px">Flow 1 — Each tax follows its collecting agency's date</strong>
+                <p style="color: var(--color-text-muted); font-size: 13px; margin-top: 10px">
+                  The tax agency gains a date purpose, PAYROLL by default or
+                  REFERENCE, so the run date it's compared against matches
+                  who actually collects it.
+                </p>
+                <div style="margin-top: 14px; font-size: 12.5px; color: var(--color-text-dim)">
+                  3 steps · 35 hunks
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-row reverse">
+            <div class="feature-copy">
+              <div class="tag">Chain diagrams</div>
+              <h3>See the call chain, not just the files</h3>
+              <p>
+                A flow's "View Chain Diagram" button opens the real call
+                graph behind it — who calls whom, in order. Hover a node for
+                its file and what changed there; click it to jump straight
+                into that function's own diff.
+              </p>
+              <ul>
+                <li>Built from the actual code graph, not guessed from file names</li>
+                <li>Every node is navigable, including nodes outside the current step</li>
+              </ul>
+            </div>
+            <div class="mockup" style="margin: 0">
+              <div class="titlebar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+              <div class="body" style="font-size: 12.5px; font-family: ui-monospace, monospace">
+                <div style="display:flex;align-items:center;gap:8px;color:var(--color-text-muted)">
+                  <span class="pill">runSync()</span> → <span class="pill">classifyError()</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;color:var(--color-text-muted);margin-top:10px;margin-left:24px">
+                  ↳ <span class="pill">retryWithBackoff()</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;color:var(--color-text-muted);margin-top:10px;margin-left:48px">
+                  ↳ <span class="pill">RetryConfig</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-row">
+            <div class="feature-copy">
+              <div class="tag">Ask Descry</div>
+              <h3>Ask about the code you're looking at</h3>
+              <p>
+                A chat panel scoped to the exact line, step, or flow you've
+                got open — grounded in your real codebase, not a generic
+                summary of the diff text.
+              </p>
+              <ul>
+                <li>Answers link back to the step or flow they reference</li>
+                <li>Live-reviewed by your own coding agent when the walkthrough came from one</li>
+              </ul>
+            </div>
+            <div class="chat-mock">
+              <div class="turn-user"><span>Does this handle the case where the file uses commas as a thousands separator?</span></div>
+              <div class="turn-assistant">
+                <span class="who">descry</span>
+                <p>
+                  Yes — it only treats comma as the decimal point when the
+                  file's own delimiter is a semicolon. Everything else keeps
+                  comma as a thousands separator.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-row reverse">
+            <div class="feature-copy">
+              <div class="tag">Views</div>
+              <h3>Diff, Split, Base, or PR — your call, per step</h3>
+              <p>
+                Toggle between an annotated diff, a side-by-side split, or
+                the plain file as it stood on either branch. Your place in
+                the step is kept across the switch.
+              </p>
+            </div>
+            <div class="mockup" style="margin: 0">
+              <div class="titlebar">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                <div style="margin-left: auto; display: flex; gap: 6px; font-size: 11px">
+                  <span class="pill">Diff</span><span style="color: var(--color-text-dim)">Split</span>
+                  <span style="color: var(--color-text-dim)">Base</span><span style="color: var(--color-text-dim)">PR</span>
+                </div>
+              </div>
+              <div class="body" style="font-size: 12.5px; font-family: ui-monospace, monospace; color: var(--color-text-muted)">
+                + retrying up to 3 times on a transient error<br />
+                + classifying the error before deciding to retry
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-row">
+            <div class="feature-copy">
+              <div class="tag">Comments</div>
+              <h3>Comments that stay anchored to the code</h3>
+              <p>
+                Leave a comment on exactly the lines it's about. Track it as
+                unresolved, and resolve it once the change is made — by you,
+                or by the agent that's already in your working tree.
+              </p>
+            </div>
+            <div class="chat-mock">
+              <div class="turn-assistant">
+                <span class="who">review comment</span>
+                <p>
+                  Also flip <code>clampsGarnishmentDeductions()</code> here — the
+                  manual-deduction endpoint still bypasses the cap otherwise.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-row reverse">
+            <div class="feature-copy">
+              <div class="tag">Agent integration</div>
+              <h3>Let your coding agent walk you through its own change</h3>
+              <p>
+                Descry ships an MCP server. Right after Claude Code or Codex
+                finishes implementing a plan, it can submit a walkthrough of
+                exactly what it changed — then stay live to answer your
+                follow-up questions itself, with full context on the repo.
+              </p>
+              <ul>
+                <li>Works on uncommitted changes, not just pushed branches</li>
+                <li>No separate LLM key needed — it rides on your agent's own session</li>
+              </ul>
+            </div>
+            <div class="mockup" style="margin: 0">
+              <div class="titlebar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+              <div class="body" style="font-size: 12.5px; color: var(--color-text-muted)">
+                <span class="pill">submit_walkthrough</span> succeeded — review is
+                ready in Descry.<br /><br />
+                Listening for questions on this review…
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap">
+          <div class="cta-band">
+            <h2>Try it on your next PR</h2>
+            <p>Takes a few minutes to set up.</p>
+            <a class="btn btn-accent" href="getting-started.html">Get started</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap bar">
+        <a class="brand" href="index.html">
+          <img src="assets/icon.png" alt="" />
+          Descry
+        </a>
+        <div class="links">
+          <a href="features.html">Features</a>
+          <a href="getting-started.html">Getting started</a>
+          <a href="https://github.com/meshde/descry-releases/releases/latest">Download</a>
+        </div>
+        <small>&copy; 2026 Descry</small>
+      </div>
+    </footer>
+  </body>
+</html>

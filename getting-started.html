@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Getting started — Descry</title>
+    <meta
+      name="description"
+      content="Install Descry, connect a repo, and get your first walkthrough — either from the app directly, or via Claude Code / Codex."
+    />
+    <link rel="icon" href="assets/icon.png" />
+    <link rel="stylesheet" href="assets/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap bar">
+        <a class="brand" href="index.html">
+          <img src="assets/icon.png" alt="" />
+          Descry
+        </a>
+        <nav class="primary">
+          <a href="features.html">Features</a>
+          <a href="getting-started.html" class="active">Getting started</a>
+          <a href="https://github.com/meshde/descry-releases/releases/latest">Download</a>
+        </nav>
+        <a class="btn btn-accent" href="https://github.com/meshde/descry-releases/releases/latest">Download</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero no-border" style="padding-bottom: 32px">
+        <div class="wrap">
+          <span class="eyebrow">Getting started</span>
+          <h1 style="font-size: 38px">From install to your first walkthrough</h1>
+          <p class="lead">
+            Descry works two ways: point it at a PR yourself, or let the
+            coding agent you're already using generate the walkthrough right
+            after it finishes a change. Both end up in the same place.
+          </p>
+        </div>
+      </section>
+
+      <section class="no-border">
+        <div class="wrap" style="max-width: 760px">
+          <div class="section-head" style="text-align: left; margin: 0 0 24px; max-width: none">
+            <h2 style="font-size: 20px">1. Install Descry</h2>
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="num">1</div>
+              <div>
+                <h3>Download the app</h3>
+                <p>
+                  Grab the latest build from the
+                  <a href="https://github.com/meshde/descry-releases/releases/latest">releases page</a>.
+                  Descry is a desktop app for macOS and updates itself in
+                  place after that.
+                </p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="num">2</div>
+              <div>
+                <h3>Add a repository</h3>
+                <p>
+                  In <strong>Settings → Repositories</strong>, add the local
+                  folder of the repo you want to review. In
+                  <strong>Settings → Version Control</strong>, connect
+                  GitHub so Descry can list its open PRs.
+                </p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="num">3</div>
+              <div>
+                <h3>Add an LLM provider (optional)</h3>
+                <p>
+                  If you want Descry to classify a PR on its own — without a
+                  coding agent — add a provider key under
+                  <strong>Settings → LLM Providers</strong>. Skip this if
+                  you're only going to generate walkthroughs through Claude
+                  Code or Codex (see path B below).
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-head" style="text-align: left; margin: 56px 0 24px; max-width: none">
+            <h2 style="font-size: 20px">2A. Review a PR directly in Descry</h2>
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="num">1</div>
+              <div>
+                <h3>Click "+ New Review"</h3>
+                <p>Pick the repo and the open pull request you want to review.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="num">2</div>
+              <div>
+                <h3>Wait for the walkthrough</h3>
+                <p>
+                  Descry builds the code graph for the PR, groups the diff
+                  into flows, and opens the review once it's ready.
+                </p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="num">3</div>
+              <div>
+                <h3>Work through it flow by flow</h3>
+                <p>
+                  Open a chain diagram where one's shown, ask Descry
+                  questions inline, and leave comments anchored to specific
+                  lines.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-head" style="text-align: left; margin: 56px 0 24px; max-width: none">
+            <h2 style="font-size: 20px">2B. Generate it from Claude Code or Codex</h2>
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="num">1</div>
+              <div>
+                <h3>Connect the Descry MCP server</h3>
+                <p>
+                  Descry ships an MCP server (<code>descry-mcp</code>) that any
+                  MCP-capable agent can connect to — add it the same way you'd
+                  add any other MCP server in your agent's settings.
+                </p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="num">2</div>
+              <div>
+                <h3>Ask for a walkthrough once your change is done</h3>
+                <p>
+                  Right after implementing a plan — committed or not — ask
+                  your agent to walk you through it in Descry. It classifies
+                  its own diff into flows and submits the review.
+                </p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="num">3</div>
+              <div>
+                <h3>Ask questions, live</h3>
+                <p>
+                  Open the review in Descry and ask away — your agent is
+                  listening and answers from inside the same repo it just
+                  changed, not a cold read of the diff.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap">
+          <div class="cta-band">
+            <h2>Ready when you are</h2>
+            <p>Download Descry and point it at your next PR.</p>
+            <a class="btn btn-accent" href="https://github.com/meshde/descry-releases/releases/latest">Download Descry</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap bar">
+        <a class="brand" href="index.html">
+          <img src="assets/icon.png" alt="" />
+          Descry
+        </a>
+        <div class="links">
+          <a href="features.html">Features</a>
+          <a href="getting-started.html">Getting started</a>
+          <a href="https://github.com/meshde/descry-releases/releases/latest">Download</a>
+        </div>
+        <small>&copy; 2026 Descry</small>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Descry — code review that follows the logic, not the file list</title>
+    <meta
+      name="description"
+      content="Descry turns a diff into a navigable, flow-based walkthrough, with chain diagrams and an AI chat grounded in your actual code."
+    />
+    <link rel="icon" href="assets/icon.png" />
+    <link rel="stylesheet" href="assets/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap bar">
+        <a class="brand" href="index.html">
+          <img src="assets/icon.png" alt="" />
+          Descry
+        </a>
+        <nav class="primary">
+          <a href="features.html">Features</a>
+          <a href="getting-started.html">Getting started</a>
+          <a href="https://github.com/meshde/descry-releases/releases/latest">Download</a>
+        </nav>
+        <a class="btn btn-accent" href="getting-started.html">Get started</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero no-border">
+        <div class="wrap">
+          <span class="eyebrow">Desktop app · macOS</span>
+          <h1>Code review that follows<br />the logic, not the file list</h1>
+          <p class="lead">
+            Descry turns any diff or pull request into a guided walkthrough —
+            changes grouped into named flows, ordered by how the code actually
+            calls into itself, with an AI chat that answers questions about the
+            change in front of you.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-accent" href="getting-started.html">Get started</a>
+            <a class="btn btn-ghost" href="features.html">See features</a>
+          </div>
+
+          <div class="mockup">
+            <div class="titlebar">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            </div>
+            <div class="body">
+              <div class="grid" style="grid-template-columns: 1fr 1.3fr; gap: 16px">
+                <div class="chat-mock" style="text-align: left">
+                  <div class="turn-user"><span>Why not just reuse the existing validator here?</span></div>
+                  <div class="turn-assistant">
+                    <span class="who">descry</span>
+                    <p>
+                      It only checks required fields, not cross-field rules — the
+                      PT tax tables need a value that depends on two other
+                      fields at once, which <span class="pill">validateRow()</span>
+                      can't express.
+                    </p>
+                    <p>See <span class="pill">step 3</span> for where that rule lives.</p>
+                  </div>
+                </div>
+                <div class="chat-mock" style="text-align: left">
+                  <strong style="font-size: 13px">Flow 2 — Period-to-date history</strong>
+                  <p style="margin-top: 10px">
+                    1. <span class="pill">PayrollRunTax.model.ts</span> adds a period-basis column<br />
+                    2. <span class="pill">ptd-snapshot.service.ts</span> reads it when rebuilding history<br />
+                    3. <span class="pill">payroll-aggregation-query.service.ts</span> groups by remuneration month
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap">
+          <div class="section-head">
+            <div class="kicker">Why Descry</div>
+            <h2>A flat diff tells you what changed. Not why.</h2>
+            <p>
+              Reviewing a 180-file PR as a wall of red and green lines doesn't
+              scale — people skim, rubber-stamp, and bugs ship. Descry
+              decomposes the change into the logical paths it actually took
+              through your code.
+            </p>
+          </div>
+
+          <div class="grid">
+            <div class="card">
+              <div class="icon">⇶</div>
+              <h3>Flow-based walkthroughs</h3>
+              <p>
+                Every hunk is grouped into a named flow and ordered into
+                steps, so you review "what this PR does" instead of "which
+                files it touched."
+              </p>
+            </div>
+            <div class="card">
+              <div class="icon">◎</div>
+              <h3>Chain diagrams</h3>
+              <p>
+                See the real call chain behind a flow as a diagram. Click any
+                node to jump straight to that function's own diff.
+              </p>
+            </div>
+            <div class="card">
+              <div class="icon">✦</div>
+              <h3>Ask Descry</h3>
+              <p>
+                Chat scoped to a line, a step, or a whole flow — grounded in
+                the actual code, not a generic summary.
+              </p>
+            </div>
+            <div class="card">
+              <div class="icon">⇄</div>
+              <h3>Diff / Split / Base / PR views</h3>
+              <p>
+                Switch between an annotated diff, side-by-side split, or the
+                plain base/PR file, per step, without losing your place.
+              </p>
+            </div>
+            <div class="card">
+              <div class="icon">✎</div>
+              <h3>Anchored comments</h3>
+              <p>
+                Leave a comment on the exact lines it's about, track it, and
+                resolve it once it's addressed.
+              </p>
+            </div>
+            <div class="card">
+              <div class="icon">⌁</div>
+              <h3>Works with your coding agent</h3>
+              <p>
+                Claude Code and Codex can generate the walkthrough themselves
+                right after implementing a plan, and answer your questions on
+                it live.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap">
+          <div class="cta-band">
+            <h2>Review your next PR the way you'd explain it out loud</h2>
+            <p>Free to try. Runs locally as a desktop app.</p>
+            <a class="btn btn-accent" href="getting-started.html">Get started</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap bar">
+        <a class="brand" href="index.html">
+          <img src="assets/icon.png" alt="" />
+          Descry
+        </a>
+        <div class="links">
+          <a href="features.html">Features</a>
+          <a href="getting-started.html">Getting started</a>
+          <a href="https://github.com/meshde/descry-releases/releases/latest">Download</a>
+        </div>
+        <small>&copy; 2026 Descry</small>
+      </div>
+    </footer>
+  </body>
+</html>
