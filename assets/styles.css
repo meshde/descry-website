@@ -285,10 +285,6 @@ nav.primary a.active {
   font-weight: 600;
 }
 
-.crumb-bar .reindex {
-  color: var(--color-text-dim);
-}
-
 .tab-bar {
   display: flex;
   align-items: center;
